@@ -22,8 +22,7 @@ Neste tutorial será necessário que você:
 
 ## Tutorial
 
-### Monitor Mode
-
+### Modo monitor
 Primero precisamos listar as interfaces de rede de seu computador, para isso digite o seguinte comando:
 
 ```bash
