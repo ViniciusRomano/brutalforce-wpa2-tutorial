@@ -123,7 +123,7 @@ Como as informações estão sendo capturadas no passo anterior, utilizaremos o 
 sudo aireplay-ng -0 2 -a EC:4D:47:B3:F5:88 mon0
 ```
 
-Caso conseguirmos o Handshake, irá aparecer no primeiro terminal algo parecido com`WPA handshake: 00:00:00:00:00`.Portanto, podemos parar de capturar os pacotes, apertando `Ctrl+C`. Os pacotes ficaram salvos como nome de `-01.cap`. Neste tutorial, iremos trocar o nome para 'mypackages.cap'.
+Caso conseguirmos o Handshake, irá aparecer no primeiro terminal algo parecido com`WPA handshake: 00:00:00:00:00`.Portanto, podemos parar de capturar os pacotes, apertando `Ctrl+C`. Os pacotes ficaram salvos como nome de `.-01.cap`(o arquivo ficará oculto). Neste tutorial, iremos trocar o nome para 'mypackages.cap'.
 
 ### Criando a Wordlist
 Na criação de uma wordlist, é interessante que se conheça o alvo atacado, criando assim uma wordlist específica para aquele alvo. Para este tutorial, criaremos uma wordlist que conterá somente números,tendo no total de 8 caracteres de tamanho.
