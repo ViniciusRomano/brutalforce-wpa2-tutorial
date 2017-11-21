@@ -1,9 +1,9 @@
 # Tutorial - Wi-Fi Cracking WPA/WPA2 (Brute Force)
 
 ## Introdução
-Este tutorial tem o propósito de ilustrar, de maneira prática, de como ter o acesso de uma rede Wifi protegida com os métodos de criptográfia WPA/WPA2. Este tutorial foi desenvolvido como trabalho final para a mateŕia de Segurança e Auditoria de Sistemas, na Universidade Tecnológica Federal do Paraná (UTFPR-CP). Em um breve resumo, faremos um ataque de força bruta em cima de uma captura de pacotes, obtidos monitorando o tráfego da rede. Esse ataque é realizado com uma lista de possíveis senhas daquela rede Wifi.
+Este tutorial tem o propósito de ilustrar, de maneira simplificada, de como ter o acesso de uma rede Wifi protegida com os métodos de criptográfia WPA/WPA2. Este tutorial foi desenvolvido como trabalho final para a mateŕia de Segurança e Auditoria de Sistemas, na Universidade Tecnológica Federal do Paraná (UTFPR-CP). Em um breve resumo, faremos um ataque de força bruta em cima de uma captura de pacotes, obtidos monitorando o tráfego da rede. Esse ataque é realizado com uma lista de possíveis senhas daquela rede Wifi.
 
-__ATENÇÃO: Este tutorial foi realizado para fins educacionais, e não deve ser utilizada para atividades ilegais. O autor não é responsabilizado pelo uso indevido do mesmo__
+__ATENÇÃO: Este tutorial foi realizado para fins educacionais, e não deveser utilizada para atividades ilegais. O autor não é responsabilizado pelo uso indevido do mesmo__
 
 ## Pré requisitos
 
@@ -114,7 +114,7 @@ As redes que utiizam criptográfia WPA/WPA2 utilizam o "4-way handshake". O que 
 
 sudo airodump-ng -c 1 --bssid EC:4D:47:B3:F5:88 -w . mon0
 ```
-Para que a conexão entre cliente e access point seja desconectada, nos passaremos pelo access point e enviaremos frames (unidade de dados na camada de enlace) para os clientes. Os principais tipos de frames são os *Data Frames*(para transmissão de dados), *Control Frames*(controle de acesso do meio) e os *Management frames*(possuem informações de gerenciamento). Dentro dos *Management frames*, existe um frame que tem o nome de *Deauthentication*, que serve para desconectar de forma segura os dispositivos na rede. Como as informações estão sendo capturadas no passo anterior, iremos desautenticar o dispositivo da rede (faremos este passo em outro terminal), utilizando este frame. Utilizaremos o seguinte comando para que isso aconteça:
+Para que a conexão entre cliente e access point seja desconectada, nos passaremos pelo access point e enviaremos frames (unidade de dados na camada de enlace) para os clientes. Os principais tipos de frames são os *Data Frames*(para transmissão de dados), *Control Frames*(controle de acesso do meio) e os *Management frames*(possuem informações de gerenciamento). Dentro dos *Management frames*, existe um frame que tem o nome de *Deauthentication*, que serve para desconectar de forma segura os dispositivos na rede. Como as informações estão sendo capturadas no passo anterior, iremos desautenticar o dispositivo da rede (faremos este passo em outro terminal), utilizando este frame. Isto só ocorre pois os frames criptografados são somente o do tipo *Data frames*. Utilizaremos o seguinte comando para que isso aconteça:
 
 ```bash
 ## -0 2 : enviará dois pacotes "deauth". (Isso irá desconectar o cliente da rede wifi por alguns instantes)
@@ -170,3 +170,15 @@ Neste momento, começará o ataque por força bruta nos pacotes capturados. Quan
 
       EAPOL HMAC     : 9F C6 51 57 D3 FA 99 11 9D 17 12 BA B6 DB 06 B4 
 ```
+
+### Voltando para modo *managed*
+Para voltar sua placa de rede para o modo *managed* (cliente), basta seguir o comando no terminal:
+```
+service network-manager restart
+```
+
+## Maneiras de previnir este ataque
+Existem duas formas de prevenção deste tipo de ataque, que são elas:
+ - Colocar uma senha forte o suficiente.
+ - Implementar segurança nos frames de tipo "Management".
+
