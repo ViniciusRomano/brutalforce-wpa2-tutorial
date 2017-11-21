@@ -1,7 +1,7 @@
 # Tutorial - Wi-Fi Cracking WPA/WPA2 (Brute Force)
 
 ## Introdução
-Este tutorial tem o propósito de ilustrar, de maneira simplificada, de como ter o acesso de uma rede Wifi protegida com os métodos de criptográfia WPA/WPA2. Este tutorial foi desenvolvido como trabalho final para a mateŕia de Segurança e Auditoria de Sistemas, na Universidade Tecnológica Federal do Paraná (UTFPR-CP). Em um breve resumo, faremos um ataque de força bruta em cima de uma captura de pacotes, obtidos monitorando o tráfego da rede. Esse ataque é realizado com uma lista de possíveis senhas daquela rede Wifi.
+Este tutorial tem o propósito de ilustrar, de maneira prática, de como ter o acesso de uma rede Wifi protegida com os métodos de criptográfia WPA/WPA2. Este tutorial foi desenvolvido como trabalho final para a mateŕia de Segurança e Auditoria de Sistemas, na Universidade Tecnológica Federal do Paraná (UTFPR-CP). Em um breve resumo, faremos um ataque de força bruta em cima de uma captura de pacotes, obtidos monitorando o tráfego da rede. Esse ataque é realizado com uma lista de possíveis senhas daquela rede Wifi.
 
 __ATENÇÃO: Este tutorial foi realizado para fins educacionais, e não deveser utilizada para atividades ilegais. O autor não é responsabilizado pelo uso indevido do mesmo__
 
