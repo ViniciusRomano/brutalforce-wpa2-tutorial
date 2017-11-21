@@ -113,7 +113,8 @@ As redes que utiizam criptográfia WPA/WPA2 utilizam o "4-way handshake". O que 
 ## -w: Diretório que ficará salvo a captura dos pacotes
 
 sudo airodump-ng -c 1 --bssid EC:4D:47:B3:F5:88 -w . mon0
-```Para que a conexão entre cliente e access point seja desconectada, nos passaremos pelo access point e enviaremos frames (unidade de dados na camada de enlace) para os clientes. Os principais tipos de frames são os *Data Frames*(para transmissão de dados), *Control Frames*(controle de acesso do meio) e os *Management frames*(possuem informações de gerenciamento). Dentro dos *Management frames*, existe um frame que tem o nome de *Deauthentication*, que serve para desconectar de forma segura os dispositivos na rede. Como as informações estão sendo capturadas no passo anterior, iremos desautenticar o dispositivo da rede (faremos este passo em outro terminal), utilizando este frame. Utilizaremos o seguinte comando para que isso aconteça:
+```
+Para que a conexão entre cliente e access point seja desconectada, nos passaremos pelo access point e enviaremos frames (unidade de dados na camada de enlace) para os clientes. Os principais tipos de frames são os *Data Frames*(para transmissão de dados), *Control Frames*(controle de acesso do meio) e os *Management frames*(possuem informações de gerenciamento). Dentro dos *Management frames*, existe um frame que tem o nome de *Deauthentication*, que serve para desconectar de forma segura os dispositivos na rede. Como as informações estão sendo capturadas no passo anterior, iremos desautenticar o dispositivo da rede (faremos este passo em outro terminal), utilizando este frame. Utilizaremos o seguinte comando para que isso aconteça:
 
 ```bash
 ## -0 2 : enviará dois pacotes "deauth". (Isso irá desconectar o cliente da rede wifi por alguns instantes)
